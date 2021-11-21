@@ -22,7 +22,7 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
   + 1주차 논문 분석(YOLOv3 논문과 edge AI 논문 각 1부씩)
   + 2주차 분석한 내용을 정리하여 발표 및 아이디어 공유
   + 2주차 docker를 이용하여 이미지, 컨테이너 설치 및 개발환경 구성
-  + 3주차 논문에서 소개한 소스코드와 데이터셋(ms-coco)를 이용한 테스팅 진행
+  + 3주차 논문에서 소개한 소스코드와 데이터셋(ms-coco) 이용한 테스팅 진행
   + 4주차 customized data를 이용한 AI객체 인식 모델 개발
 
 ## 논문 분석 진행
@@ -149,4 +149,53 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
 
         └── valid.txt
         ```
-      
+      + training을 위한 가중치 다운로드
+        ```
+        wget https://pjreddie.com/media/files/darknet53.conv.74
+        ```
+        
+## 모델 경량화를 위한 config 파일 수정
+    ```
+    [net]
+    ######## Testing
+    #batch=1
+    #subdivisions=1
+    ######## Training
+    batch=64
+    subdivisions=1
+    width=256
+    height=256
+    channels=3
+    momentum=0.9
+    decay=0.0005
+    angle=0
+    saturation = 1.5
+    exposure = 1.5
+    hue=.1
+
+    learning_rate=0.001
+    policy=steps
+    burn_in=1000
+    max_batches = 160200
+    steps=128000,144000
+    scales=.1,.1
+
+    [yolo]
+    mask = 0,1,2
+    anchors = 21,20, 50,47, 115,107
+    classes=80
+    num=3
+    jitter=.3
+    ignore_thresh = .5
+    truth_thresh = 1
+    random=1
+    ```
+   + 학습 시작
+   
+    ```
+    ./darknet detector train cfg/coco.data cfg/YOLOv3-edge.cfg darknet53.conv74 -gpus 1,2 | tee backup/train.log
+    ```
+   + 학습 결과 확인
+   + ![predictions](https://user-images.githubusercontent.com/83147205/142768393-a33d5564-0b5b-4d1c-a89c-6b51c0dc317b.jpg)
+   + 
+    
