@@ -23,4 +23,26 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
   + 2주차 분석한 내용을 정리하여 발표 및 아이디어 공유
   + 2주차 docker를 이용하여 이미지, 컨테이너 설치 및 개발환경 구성
   + 3주차 논문에서 소개한 소스코드와 데이터셋(ms-coco)를 이용한 테스팅 진행
-  + 3주차 개발 착수
+  + 4주차 customized data를 이용한 AI객체 인식 모델 개발
+
+## 논문 분석 진행
+  + 참조논문
+    + Edge Computing board 탑재용 딥러닝 기반 객체 인식 SW 개발
+    + YOLOv3 An Incremental Improvement
+    + On-Device Machine Learning: An Algorithms and Learning Theory Perspective
+## 논문 내용 발표 및 아이디어 공유
+  + 발표 순서
+    + Edge computing software 소개
+    + YOLOv3 설명
+      + anchor box build
+      + bounding box prediction
+      + class prediction
+      + feature extract
+## 개발환경 구축
+  + docker 개발환경 설정
+    + nvidia driver 설치
+    + 버전에 맞는 cuda 설치
+  + YOLOv3 사용환경 구축
+    + darknet 내려 받기
+    + 
+    + 
