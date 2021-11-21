@@ -73,6 +73,7 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
     + sample test
       ```
       ./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
-      ```![dog](https://user-images.githubusercontent.com/83147205/142766118-aa23d0fe-ee82-49bc-9283-40200faa3c5f.png)
+      ```
+      ![dog](https://user-images.githubusercontent.com/83147205/142766118-aa23d0fe-ee82-49bc-9283-40200faa3c5f.png)
 
       
