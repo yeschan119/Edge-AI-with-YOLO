@@ -75,5 +75,78 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
       ./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
       ```
       ![dog](https://user-images.githubusercontent.com/83147205/142766118-aa23d0fe-ee82-49bc-9283-40200faa3c5f.png)
+      
+    + training data 구성(ms-coco)
+      
+      + clone coco API
+        ```
+        - git clone https://github.com/pdollar/coco
+        - cd coco
+        - mkdir images
+        - cd images
+        ```
+      + download images
+        ```
+        - wget -c https://pjreddie.com/media/files/train2014.zip
+        - wget -c https://pjreddie.com/media/files/val2014.zip
+        - unzip -q train2014.zip
+        - unzip -q val2014.zip
+        - cd ..
+        ```
+      + download coco meta data(trian.txt, valid.txt, labels)
+        ```
+        - wget -c https://pjreddie.com/media/files/instances_train-val2014.zip
+        - wget -c https://pjreddie.com/media/files/coco/5k.part
+        - wget -c https://pjreddie.com/media/files/coco/trainvalno5k.part
+        - wget -c https://pjreddie.com/media/files/coco/labels.tgz
+        - tar xzf labels.tgz
+        - unzip -q instances_train-val2014.zip
+        ```
+      + train.txt, valid.txt 파일 생성
+        ```
+        - paste <(awk "{print \"$PWD\"}" <5k.part) 5k.part | tr -d '\t' > valid.txt
+        - paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t' > train.txt
+        ```
+      + dataset 구조 구성
+        ```
+        ├── images
 
+        │   ├── train2014
+
+        │   │   ├── COCO_train2014_000000000009.jpg
+
+        │   │   ├── COCO_train2014_000000000025.jpg
+
+        │   │   └── ...
+
+        │   └── val2014
+
+        │       ├── COCO_val2014_000000000042.jpg
+
+        │       ├── COCO_val2014_000000000073.jpg
+
+        │       └── ...
+
+        ├── labels
+
+        │   ├── train2014
+
+        │   │   ├── COCO_train2014_000000000009.txt
+
+        │   │   ├── COCO_train2014_000000000025.txt
+
+        │   │   └── ...
+
+        │   └── val2014
+
+        │       ├── COCO_val2014_000000000042.txt
+
+        │       ├── COCO_val2014_000000000073.txt
+
+        │       └── ...
+
+        ├── train.txt
+
+        └── valid.txt
+        ```
       
