@@ -44,5 +44,35 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
     + 버전에 맞는 cuda 설치
   + YOLOv3 사용환경 구축
     + darknet 내려 받기
-    + 
-    + 
+      ```
+      git clone https://github.com/pjreddie/darknet
+      ```
+    + MakeFile 수정
+      ```
+      GPU=1
+      CUDNN=0
+
+      OPENCV = 0
+
+      OPENMP=0
+
+      DEBUG=0
+
+      ARCH= -gencode arch=compute_35,code=sm_35 \
+      -gencode arch=compute_50,code=[sm_50,compute_50] \
+      -gencode arch=compute_52,code=[sm_52,compute_52] \
+      -gencode arch=compute_70,code=[sm_70,compute_70] \
+      -gencode arch=compute_75,code=[sm_75,compute_75] \
+      -gencode arch=compute_80,code=[sm_80,compute_80] \
+      -gencode arch=compute_80,code=[sm_80,compute_80]
+      ```
+    + download pre-trained weight file
+      ```
+      wget https://pjreddie.com/media/files/yolov3.weights
+      ```
+    + sample test
+      ```
+      ./darknet detect cfg/yolov3.cfg yolov3.weights data/dog.jpg
+      ```![dog](https://user-images.githubusercontent.com/83147205/142766118-aa23d0fe-ee82-49bc-9283-40200faa3c5f.png)
+
+      
