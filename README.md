@@ -191,11 +191,15 @@ edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
     random=1
     ```
    + 학습 시작
-   
-    ```
+  
     ./darknet detector train cfg/coco.data cfg/YOLOv3-edge.cfg darknet53.conv74 -gpus 1,2 | tee backup/train.log
-    ```
+   
    + 학습 결과 확인
    + ![predictions](https://user-images.githubusercontent.com/83147205/142768393-a33d5564-0b5b-4d1c-a89c-6b51c0dc317b.jpg)
-   + 
-    
+   
+## customized data에 대한 Object detection model 생성
+   + custom data 수집
+   + custom data에 대한 GTBox 생성
+   + 생성한 GTBox(XML)을 변환하여 YOLO dataset 구성
+   + custom data 학습 진행
+   + object detection model 
