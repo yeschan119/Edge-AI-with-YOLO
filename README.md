@@ -1,7 +1,7 @@
 # Edge-AI-with-YOLO
 edge에서 구현 가능한 AI model(object detection) 개발 프로젝트
 
-[한국어 🇰🇷](README.en.md)
+[ENGLISH](README.en.md)
 
 ## Purpose
   + Yolo 모델을 경량화 하여 edge에서 구현 가능하도록 설계
